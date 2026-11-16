@@ -1,8 +1,8 @@
 package org.greasenbrine.shellwesay.screens;
 
-import org.greasenbrine.shellwesay.config.AppConfig;
-
 import java.util.List;
+
+import org.greasenbrine.shellwesay.config.AppConfig;
 
 /**
  * The first screen shown when the game starts.

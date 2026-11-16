@@ -1,9 +1,5 @@
 package org.greasenbrine.shellwesay.desktop;
 
-import org.greasenbrine.shellwesay.ShellWeSayEngine;
-import org.greasenbrine.shellwesay.config.AppConfig;
-import org.greasenbrine.shellwesay.screens.DefaultScreen;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -12,6 +8,10 @@ import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+
+import org.greasenbrine.shellwesay.ShellWeSayEngine;
+import org.greasenbrine.shellwesay.config.AppConfig;
+import org.greasenbrine.shellwesay.screens.DefaultScreen;
 
 /**
  * Desktop entrypoint that boots the core engine in a Swing host.
