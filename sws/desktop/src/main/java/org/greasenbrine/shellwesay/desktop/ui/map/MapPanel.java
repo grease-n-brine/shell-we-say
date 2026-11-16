@@ -1,7 +1,5 @@
 package org.greasenbrine.shellwesay.desktop.ui.map;
 
-import org.greasenbrine.shellwesay.config.AppConfig;
-
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -15,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JPanel;
+
+import org.greasenbrine.shellwesay.config.AppConfig;
 
 /**
  * Reusable map viewport panel.
