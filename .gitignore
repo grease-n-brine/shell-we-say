@@ -26,3 +26,14 @@ replay_pid*
 # Maven build output
 target/
 sws/**/target/
+
+# Reference prototype sandbox
+sws-reference/
+run-sws-reference.sh
+
+# Local editor state
+.vscode/
+
+# Docs scratch files (keep the e2e blueprint tracked)
+sws/docs/*
+!sws/docs/shell-we-say-e2e-blueprint.md

@@ -1,12 +1,14 @@
 package org.greasenbrine.shellwesay.desktop;
 
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+
 import org.greasenbrine.shellwesay.ShellWeSayEngine;
 import org.greasenbrine.shellwesay.config.AppConfig;
+import org.greasenbrine.shellwesay.desktop.ui.map.MapPanel;
 
 /**
- * Desktop entrypoint that configures LWJGL3 and boots the core engine.
+ * Desktop entrypoint that boots the core engine in a Swing host.
  */
 public final class DesktopLauncher {
 
@@ -20,13 +22,22 @@ public final class DesktopLauncher {
      * @param args command-line arguments, currently unused.
      */
     public static void main(String[] args) {
+        SwingUtilities.invokeLater(DesktopLauncher::launch);
+    }
+
+    private static void launch() {
         AppConfig appConfig = AppConfig.defaultConfig();
+        ShellWeSayEngine engine = new ShellWeSayEngine(appConfig);
+        engine.initialize();
 
-        Lwjgl3ApplicationConfiguration configuration = new Lwjgl3ApplicationConfiguration();
-        configuration.setTitle(appConfig.title());
-        configuration.setWindowedMode(appConfig.windowWidth(), appConfig.windowHeight());
-        configuration.useVsync(true);
-
-        new Lwjgl3Application(new ShellWeSayEngine(appConfig), configuration);
+        JFrame frame = new JFrame(appConfig.title());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.setContentPane(new MapPanel(engine.defaultScreen().appConfig()));
+        frame.pack();
+        frame.setMinimumSize(frame.getSize());
+        frame.setMaximumSize(frame.getSize());
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
 }

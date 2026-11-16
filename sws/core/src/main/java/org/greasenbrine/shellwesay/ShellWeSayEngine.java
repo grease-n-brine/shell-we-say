@@ -1,18 +1,15 @@
 package org.greasenbrine.shellwesay;
 
-import com.badlogic.gdx.Game;
 import org.greasenbrine.shellwesay.config.AppConfig;
-import org.greasenbrine.shellwesay.screens.BootScreen;
+import org.greasenbrine.shellwesay.screens.DefaultScreen;
 
 /**
  * Core game entrypoint used by all platform launchers.
- *
- * <p>The desktop launcher provides platform setup (window, vsync, native
- * bindings), while this class owns game lifecycle and screen composition.</p>
  */
-public final class ShellWeSayEngine extends Game {
+public final class ShellWeSayEngine {
 
     private final AppConfig appConfig;
+    private DefaultScreen defaultScreen;
 
     /**
      * Constructs the game with immutable runtime configuration.
@@ -24,10 +21,21 @@ public final class ShellWeSayEngine extends Game {
     }
 
     /**
-     * Initializes the first screen.
+     * Initializes gameplay state for the active runtime.
      */
-    @Override
-    public void create() {
-        setScreen(new BootScreen(appConfig));
+    public void initialize() {
+        defaultScreen = new DefaultScreen(appConfig);
+    }
+
+    /**
+     * Returns the active startup screen state.
+     *
+     * @return initialized startup screen.
+     */
+    public DefaultScreen defaultScreen() {
+        if (defaultScreen == null) {
+            throw new IllegalStateException("Engine is not initialized. Call initialize() first.");
+        }
+        return defaultScreen;
     }
 }
